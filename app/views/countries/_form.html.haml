@@ -1,0 +1,8 @@
+= form_for @country do |f|
+  =error_messages_for @country
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .actions
+    = f.submit nil, class: 'btn btn-primary'

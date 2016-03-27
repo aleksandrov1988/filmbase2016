@@ -1,0 +1,25 @@
+= form_for @person do |f|
+  =error_messages_for @person
+  .row
+    .col-md-3
+      .form-group
+        =f.label :name
+        =f.text_field :name, class: 'form-control'
+    .col-md-3
+      .form-group
+        =f.label :origin_name
+        =f.text_field :origin_name, class: 'form-control'
+    .col-md-3
+      .form-group
+        =f.label :birthday
+        =f.text_field :birthday, class: 'form-control', data: {masked: 'date'}, value: (l(@person.birthday) if @person.birthday)
+    .col-md-3
+      .form-group
+        =f.label :avatar
+        =f.file_field :avatar
+      -if @person.avatar?
+        .text-center
+          =link_to @person.avatar.url do
+            =image_tag @person.avatar.url(:thumb), alt: Person.human_attribute_name(:avatar)
+  .actions
+    = f.submit nil, class: 'btn btn-primary'

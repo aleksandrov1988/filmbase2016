@@ -1,0 +1,29 @@
+.page-header
+  %h1
+    =@person.name
+    -if @person.origin_name.present?
+      %small=@person.origin_name
+=render 'menu'
+.row
+  .col-md-3
+    -if @person.avatar?
+      =image_tag @person.avatar.url(:medium), alt: @person.name, class: 'img-responsive'
+  .col-md-9
+    -if @person.birthday
+      %dl
+        %dt=Person.human_attribute_name(:birthday)
+        %dd
+          =l(@person.birthday, format: :long)
+          %span.text-muted
+            =surround ?(,?) do
+              =@person.human_age
+    -if @person.produced_films.any?
+      %h3=Film.human_attribute_name(:director_id)
+      .list-group
+        -@person.produced_films.each do |film|
+          =render 'films/film', film: film
+    -if @person.films.any?
+      %h3=Person.human_attribute_name(:films)
+      .list-group
+        -@person.films.each do |film|
+          =render 'films/film', film: film

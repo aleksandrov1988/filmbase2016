@@ -1,0 +1,14 @@
+.page-header
+  %h1=@user.email
+.btn-toolbar
+  =link_to edit_user_path(@user), class: 'btn btn-primary' do
+    =fa_icon 'edit'
+    Редактировать
+  =link_to @user, class: 'btn btn-danger', data: {method: :delete, confirm: t('helpers.sure')} do
+    =fa_icon 'trash'
+    Удалить
+%dl
+  %dt=User.human_attribute_name(:name)
+  %dd=@user.name
+  %dt=User.human_attribute_name(:role)
+  %dd=@user.role_name

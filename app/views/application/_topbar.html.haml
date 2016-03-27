@@ -1,0 +1,27 @@
+%nav.navbar.navbar-default.navbar-static-top
+  .container
+    .navbar-header
+      =button_tag type: 'button', class: 'navbar-toggle collapsed', data: {toggle: 'collapse', target: '#navbar-collapse'} do
+        %span.sr-only Показать/скрыть меню
+        =fa_icon 'bars'
+      =link_to t('app.name'), root_path, class: 'navbar-brand'
+    #navbar-collapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li=link_to 'Фильмы', films_path
+        %li=link_to 'Персоны', people_path
+        %li=link_to 'Жанры', genres_path
+        %li=link_to 'Страны', countries_path
+        -if User.edit_by?(@current_user)
+          %li=link_to 'Пользователи', users_path
+
+      %ul.nav.navbar-nav.navbar-right
+        -if @current_user
+          %li.dropdown
+            =link_to ?#, class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
+              =@current_user.email
+              =fa_icon 'angle-down'
+            %ul.dropdown-menu
+              %li=link_to 'Выход', logout_path
+        -else
+          %li=link_to 'Регистрация', new_user_path
+          %li=link_to 'Вход', login_path

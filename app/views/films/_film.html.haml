@@ -1,0 +1,10 @@
+=link_to film, class: 'list-group-item' do
+  .media
+    -if film.cover?
+      .media-left=image_tag film.cover.url(:thumb), alt: film.name, class: 'media-object'
+    .media-body
+      %h4.media-heading
+        =film.name
+      %i
+        =film.genre.name
+      %small.text-muted=film.year

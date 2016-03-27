@@ -1,0 +1,8 @@
+-if Film.edit_by?(@current_user)
+  .btn-toolbar
+    =link_to edit_film_path(@film), class: 'btn btn-primary' do
+      =fa_icon 'edit'
+      Редактировать
+    =link_to @film, data: {method: :delete, confirm: t('helpers.sure')}, class: 'btn btn-danger' do
+      =fa_icon 'trash'
+      Удалить

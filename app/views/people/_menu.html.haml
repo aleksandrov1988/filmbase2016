@@ -1,0 +1,9 @@
+-if Person.edit_by?(@current_user)
+  .btn-toolbar
+    =link_to edit_person_path(@person), class: 'btn btn-primary' do
+      =fa_icon 'edit'
+      Редактировать
+    -if @person.can_destroy?
+      =link_to @person, data: {method: :delete, confirm: t('helpers.sure')}, class: 'btn btn-danger' do
+        =fa_icon 'trash'
+        Удалить

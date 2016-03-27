@@ -1,0 +1,9 @@
+.page-header
+  %h1 Персоны
+-if Person.edit_by?(@current_user)
+  .btn-toolbar
+    =link_to new_person_path, class: 'btn btn-primary' do
+      =fa_icon 'plus'
+      Добавить
+.list-group=render @people
+=paginate @people

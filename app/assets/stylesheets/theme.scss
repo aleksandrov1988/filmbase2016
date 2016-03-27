@@ -1,0 +1,21 @@
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-size-base: 16px;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+@import "fonts";
+@import "token-input-bootstrap3";
+
+
+.field_with_errors {
+  @extend .has-error;
+}
+
+.alert-notice {
+  @extend .alert-success;
+}
+
+.btn-toolbar {
+  padding: $padding-large-vertical 0;
+}

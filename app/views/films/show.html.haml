@@ -1,0 +1,41 @@
+.page-header
+  %h1
+    =@film.name
+    -if @film.origin_name.present?
+      %small=@film.origin_name
+=render 'menu'      
+.row
+  .col-md-3
+    -if @film.cover?
+      =image_tag @film.cover.url(:medium), alt: @film.name, class: 'img-responsive'
+  .col-md-9
+    -if @film.slogan.present?
+      %blockquote
+        %p=@film.slogan
+    %dl
+      -if @film.country
+        %dt=Film.human_attribute_name(:country)
+        %dd=link_to @film.country.name,@film.country
+      -if @film.genre
+        %dt=Film.human_attribute_name(:genre)
+        %dd=link_to @film.genre.name,@film.genre
+      -if @film.length
+        %dt=Film.human_attribute_name(:length)
+        %dd
+          =@film.length
+          =RuPropisju.choose_plural(@film.length,'минута','минуты','минут')
+      -if @film.year
+        %dt=Film.human_attribute_name(:year)
+        %dd=@film.year
+    %div=@film.description
+    -if @film.trailer_url.present?
+      =youtube_tag(@film.trailer_url)
+    -if @film.director
+      %h3=Film.human_attribute_name(:director_id)
+      .list-group
+        =render 'people/person', person: @film.director
+    -if @film.people.any?
+      %h3=Film.human_attribute_name(:people)
+      .list-group
+        -@film.people.each do |person|
+          =render 'people/person', person: person

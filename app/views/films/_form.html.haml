@@ -1,0 +1,63 @@
+= form_for @film do |f|
+  =error_messages_for(@film)
+  .row
+    .col-md-4
+      .form-group
+        =f.label :name
+        =f.text_field :name, class: 'form-control'
+    .col-md-4
+      .form-group
+        =f.label :origin_name
+        =f.text_field :origin_name, class: 'form-control'
+    .col-md-4
+      .form-group
+        =f.label :cover
+        =f.file_field :cover
+      -if @film.cover?
+        .text-center
+          =link_to @film.cover.url do
+            =image_tag @film.cover.url(:thumb), alt: @film.name
+  .row
+    .col-md-3
+      .form-group
+        =f.label :country_id
+        =f.select :country_id, Country.ordering.map{|c| [c.name,c.id]},{}, class: 'form-control'
+    .col-md-3
+      .form-group
+        =f.label :genre_id
+        =f.select :genre_id, Genre.ordering.map{|c| [c.name,c.id]},{}, class: 'form-control'
+    .col-md-2
+      .form-group
+        =f.label :year
+        =f.text_field :year, class: 'form-control'
+    .col-md-2
+      .form-group
+        =f.label :length
+        .input-group
+          =f.text_field :length, class: 'form-control'
+          %span.input-group-addon мин
+    .col-md-2
+      .form-group
+        =f.label :trailer_url
+        =f.text_field :trailer_url, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        =f.label :slogan
+        =f.text_area :slogan, rows: 3, class: 'form-control'
+    .col-md-6
+      .form-group
+        =f.label :description
+        =f.text_area :description, rows: 6, class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+        =f.label :director_id
+        =f.text_field :director_id, data: {tokeninput:  people_path(format: :json),
+        pre: [@film.director].compact.to_json, limit: 1}
+    .col-md-8
+      .form-group
+        =f.label :person_tokens, Film.human_attribute_name(:people)
+        =f.text_field :person_tokens, data: {tokeninput:  people_path(format: :json), pre: @film.people.to_json}
+  .actions
+    = f.submit nil, class: 'btn btn-primary'

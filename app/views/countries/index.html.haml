@@ -1,0 +1,11 @@
+.page-header
+  %h1 Страны
+-if Country.edit_by?(@current_user)
+  .btn-toolbar
+    =link_to new_country_path, class: 'btn btn-primary' do
+      =fa_icon 'plus'
+      Добавить
+.list-group
+  -@countries.each do |country|
+    =link_to country.name,country, class: 'list-group-item'
+=paginate @countries

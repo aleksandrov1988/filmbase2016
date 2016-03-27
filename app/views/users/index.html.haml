@@ -1,0 +1,14 @@
+.page-header
+  %h1 Пользователи
+.btn-toolbar
+  =link_to new_user_path, class: 'btn btn-primary' do
+    =fa_icon 'user-plus'
+    Новый пользователь
+.list-group
+  -@users.each do |user|
+    =link_to user, class: 'list-group-item' do
+      =user.name
+      =surround ?(, ?) do
+        %i=user.email
+      %span.text-muted=user.role_name
+=paginate @users

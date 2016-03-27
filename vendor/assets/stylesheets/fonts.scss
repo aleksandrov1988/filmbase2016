@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), asset-url('OpenSansLight.woff2') format('woff2'),
+  asset-url('OpenSansLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), asset-url('OpenSans.woff2') format('woff2'),
+  asset-url('OpenSans.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), asset-url('OpenSansBold.woff2') format('woff2'),
+  asset-url('OpenSansBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'), asset-url('OpenSansItalic.woff2') format('woff2'),
+  asset-url('OpenSansItalic.woff') format('woff');
+}

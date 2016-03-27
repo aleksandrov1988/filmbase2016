@@ -1,0 +1,6 @@
+=link_to person, class: 'list-group-item' do
+  .media
+    -if person.avatar?
+      .media-left=image_tag person.avatar.url(:thumb), alt: person.name, class: 'media-object'
+    .media-body
+      %h4.media-heading=person.name
